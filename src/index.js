@@ -1,10 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 const server = express()
 
 
 const customers = []
 
 server.use(express.json())
+server.use(cors())
 
 //function validade customer exist middlleware
 function checkCustomer(req, res, next) {
@@ -66,4 +68,5 @@ server.delete('/customers/:id', checkCustomer, (req, res) => {
     return res.json({ message: "Customer delete on list" })
     
 })
+
 server.listen(3333);
