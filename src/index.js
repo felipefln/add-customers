@@ -22,12 +22,12 @@ function checkCustomer(req, res, next) {
 }
 
 //route list customers
-server.get('/customers', (req, res) => {
+server.get('customers', (req, res) => {
     return res.json(customers)
 })
 
 //route create customer
-server.post('/customers', (req, res) => {
+server.post('customers', (req, res) => {
     const { id, name, cpf, email, phone } = req.body;
     const customer = {
         id,
@@ -42,7 +42,7 @@ server.post('/customers', (req, res) => {
 })
 
 //route edit customer
-server.put('/customers/:id', checkCustomer, (req, res) => {
+server.put('customers/:id', checkCustomer, (req, res) => {
     const { id } = req.params
 
     const { name, cpf, email, phone } = req.body;
@@ -58,7 +58,7 @@ server.put('/customers/:id', checkCustomer, (req, res) => {
 })
 
 //route delete customer from list
-server.delete('/customers/:id', checkCustomer, (req, res) => {
+server.delete('customers/:id', checkCustomer, (req, res) => {
     const { id } = req.params
 
     const indexCustomer = customers.findIndex(c => c.id == id)
