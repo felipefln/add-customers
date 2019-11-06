@@ -23,4 +23,4 @@ server.use(express.json())
 server.use(cors())
 server.use(routes)
 
-servidor.listen(process.env.PORT || 3333);
+servidor.listen(Number(process.env.PORT) || 3333);
