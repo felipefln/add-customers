@@ -1,7 +1,7 @@
-# Project CRUD - Add Customers :)
+# Project CRUD - Add Customers Backend :)
 
 <p align="center">
-Sample project CRUD Add Customers
+CRUD Add Customers Tools
 
 
 # Stack
@@ -9,6 +9,8 @@ Sample project CRUD Add Customers
 - Backend
   - Node.js
   - Express
+  - MongoDB
+  - Mongoose
   - \* [check package.json](/backend/package.json)
 
 ### Requirements
