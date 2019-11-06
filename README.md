@@ -26,7 +26,7 @@ CRUD Add Customers Tools
 2. Go to the dir: `cd add-customers-backend`
 3. Install dependen: `yarn install` || `npm install`
 4. Run the script: `yarn dev` || `npm start`
-5. Now it's running on [http://localhost:3333](http://localhost:3333)
+5. Now it's running on [http://localhost:5555](http://localhost:5000)
 
 
 ### How to build for a deploy
