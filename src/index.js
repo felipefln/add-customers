@@ -1,72 +1,26 @@
 const express = require('express')
+const routes = require('./routes')
 const cors = require('cors')
+const mongoose =  require('mongoose')
+const http = require('http')
+
+
 const server = express()
 
+const servidor = http.Server(server)
 
-const customers = []
+mongoose.connect('mongodb+srv://add-customers:add-customers@add-customers-6d368.mongodb.net/add-customer-db?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    keepAlive: true
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log(Error, err.message);
+});
 
 server.use(express.json())
 server.use(cors())
+server.use(routes)
 
-//function validade customer exist middlleware
-function checkCustomer(req, res, next) {
-    const { id } = req.params;
-
-    const customer = customers.find(c => c.id == id)
-
-    if(!customer) {
-        return res.status(400).json({error: 'Customer dot not exists'})
-    }
-
-    return next();
-}
-
-//route list customers
-server.get('customers', (req, res) => {
-    return res.json(customers)
-})
-
-//route create customer
-server.post('customers', (req, res) => {
-    const { id, name, cpf, email, phone } = req.body;
-    const customer = {
-        id,
-        name,
-        cpf,
-        email,
-        phone
-    }
-
-    customers.push(customer)
-    return res.json(customers)
-})
-
-//route edit customer
-server.put('customers/:id', checkCustomer, (req, res) => {
-    const { id } = req.params
-
-    const { name, cpf, email, phone } = req.body;
-    
-    const customer = customers.find(c => c.id == id);
-    
-    customer.name = name,
-    customer.cpf = cpf,
-    customer.email = email,
-    customer.phone = phone;
-
-    return res.json(customer)
-})
-
-//route delete customer from list
-server.delete('customers/:id', checkCustomer, (req, res) => {
-    const { id } = req.params
-
-    const indexCustomer = customers.findIndex(c => c.id == id)
-
-    customers.splice(indexCustomer, 1)
-
-    return res.json({ message: "Customer delete on list" })
-    
-})
-
-server.listen(3333);
+servidor.listen(3333);
