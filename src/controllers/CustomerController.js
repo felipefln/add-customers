@@ -5,7 +5,7 @@ module.exports = {
         const { id, name, email, cpf, phone } = req.body;
         
 
-        const client = await Customer.findOne({ id })
+        let client = await Customer.findOne({ id })
 
         if (!client) {
             client = await Customer.create({ id, name, email, cpf, phone })
